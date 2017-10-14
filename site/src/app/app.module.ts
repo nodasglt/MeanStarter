@@ -31,6 +31,8 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 
+import { MatButtonModule, MatIconModule } from '@angular/material';
+
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
@@ -69,7 +71,9 @@ type StoreType = {
     RouterModule.forRoot(ROUTES, {
       useHash: Boolean(history.pushState) === false,
       preloadingStrategy: PreloadAllModules
-    })
+    }),
+    MatButtonModule,
+    MatIconModule
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
