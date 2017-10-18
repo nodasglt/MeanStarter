@@ -33,6 +33,8 @@ import { XLargeDirective } from './home/x-large';
 
 import { MatButtonModule, MatIconModule } from '@angular/material';
 
+import { NavBarComponent } from './navbar';
+
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
@@ -57,6 +59,7 @@ type StoreType = {
     AppComponent,
     AboutComponent,
     HomeComponent,
+    NavBarComponent,
     NoContentComponent,
     XLargeDirective
   ],

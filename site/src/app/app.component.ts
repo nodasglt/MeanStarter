@@ -19,7 +19,14 @@ import { AppState } from './app.service';
     './app.component.scss'
   ],
   template: `
-    <nav>
+    <navbar></navbar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+
+    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
+
+    <div>
       <a [routerLink]=" ['./'] "
         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
         Index
@@ -40,13 +47,7 @@ import { AppState } from './app.service';
         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
         About
       </a>
-    </nav>
-
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-
-    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
+    </div>
 
     <footer>
       <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
