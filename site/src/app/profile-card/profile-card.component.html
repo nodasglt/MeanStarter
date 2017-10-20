@@ -1,0 +1,29 @@
+<div class="tp-wrapper">
+    <div class="tp-box" [@flipState]="flip">
+            <mat-card class="tp-box__side">
+                <div class="back-img"></div>
+                <img mat-card-image class="img-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <mat-card-title class="name">Shiba Inu</mat-card-title>
+                    <mat-card-subtitle class="title">Dog Breed</mat-card-subtitle>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip()">More</button>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card class=" tp-box__side tp-box__back">
+                <h2 class="about">About Me</h2>
+                <mat-card-content>
+                    <hr class="line">
+                    <p style="text-align: center">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta. Blanditiis rem amet repellat,
+                         dolores nihil quae in mollitia asperiores ut rerum repellendus, voluptatum eum, officia laudantium quaerat?
+                    </p>
+                    <hr class="line">
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip()">Less</button>
+                </mat-card-actions>
+            </mat-card>
+    </div>
+</div>

@@ -31,10 +31,11 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 
-import { MatButtonModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
 
 import { ParticlesModule } from 'angular-particle';
 
+import { ProfileCardComponent } from './profile-card';
 import { NavBarComponent } from './navbar';
 
 import '../styles/styles.scss';
@@ -61,6 +62,7 @@ type StoreType = {
     AppComponent,
     AboutComponent,
     HomeComponent,
+    ProfileCardComponent,
     NavBarComponent,
     NoContentComponent,
     XLargeDirective
@@ -79,6 +81,7 @@ type StoreType = {
     }),
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
     ParticlesModule,
   ],
   /**
