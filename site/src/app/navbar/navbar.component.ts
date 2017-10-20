@@ -59,10 +59,6 @@ export class NavBarComponent implements AfterViewInit, OnInit {
         });
     }
 
-    ngOnInit() {
-        //this.route.fragment.subscribe(fragment => { this.fragment = fragment; });
-    }
-
     ngAfterViewInit() {
         this.secondaryNavTopPosition = this.secondaryNav.nativeElement.offsetTop;
         this.taglineOffesetTop = this.introTagline.nativeElement.offsetTop
@@ -127,4 +123,26 @@ export class NavBarComponent implements AfterViewInit, OnInit {
         return id == this.fragment;
     }
 
+    myParams: object = {};
+    myStyle: object = {};
+
+    ngOnInit() {
+        this.myStyle = {
+            'height': '100%'
+        };
+
+        this.myParams = {
+            particles: {
+                number: {
+                    value: 200,
+                },
+                color: {
+                    value: '#ff0000'
+                },
+                shape: {
+                    type: 'triangle',
+                },
+            }
+        };
+    }
 }

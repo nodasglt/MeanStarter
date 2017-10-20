@@ -10,14 +10,15 @@
     </nav> <!-- cd-primary-nav -->
 </header>
 <section id="cd-intro">
+    <particles [params]="myParams" [style]="myStyle"></particles>
     <div #IntroTagline id="cd-intro-tagline">
-        <h1>Secondary Fixed Navigation</h1>
-        <a href="http://codyhouse.co/?p=296" class="cd-btn" [class.is-hidden]="isHidden" [class.slide-in]="slideIn">Article &amp; Download</a>
+        <h1>Sample text</h1>
+        <!--<a href="http://codyhouse.co/?p=296" class="cd-btn" [class.is-hidden]="isHidden" [class.slide-in]="slideIn">Article &amp; Download</a>-->
     </div> <!-- #cd-intro-tagline -->
 </section> <!-- #cd-intro -->
 
 <div #SecondaryNav class="cd-secondary-nav" [class.is-fixed]="isFixed" [class.animate-children]="slideIn">
-    <a href="#0" class="cd-secondary-nav-trigger" [class.menu-is-open]="isOpen" (click)="openSecondaryNavTrigger()">Menu<span></span></a> <!-- button visible on small devices -->
+    <a href="#" class="cd-secondary-nav-trigger" [class.menu-is-open]="isOpen" (click)="openSecondaryNavTrigger()">Menu<span></span></a> <!-- button visible on small devices -->
     <nav>
         <ul [class.is-visible]="isOpen">
             <li>
@@ -50,7 +51,6 @@
                     <span></span><!-- icon -->
                 </a>
             </li>
-            <li>{{fragment}} -- {{height}}</li>
         </ul>
     </nav>
 </div> <!-- .cd-secondary-nav -->

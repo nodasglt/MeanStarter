@@ -33,6 +33,8 @@ import { XLargeDirective } from './home/x-large';
 
 import { MatButtonModule, MatIconModule } from '@angular/material';
 
+import { ParticlesModule } from 'angular-particle';
+
 import { NavBarComponent } from './navbar';
 
 import '../styles/styles.scss';
@@ -76,7 +78,8 @@ type StoreType = {
       preloadingStrategy: PreloadAllModules
     }),
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ParticlesModule,
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.

@@ -189,22 +189,27 @@ Intro
 #cd-intro {
 	position: relative;
 	height: $intro-height-S; // variables inside _variables.scss
-	background: url(../../assets/img/intro-background.jpg) no-repeat center center;
+	background: #000; //url(../../assets/img/intro-background.jpg) no-repeat center center;
 	background-size: cover;
 	z-index: $intro-zindex;
 
 	#cd-intro-tagline {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
 		width: 90%;
 		max-width: $L;
 		margin: 0 auto;
-		text-align: center;
 		padding-top: 120px;
+		text-align: center;
 	}
 
 	h1 {
 		@include font-size(24px);
 		font-weight: 300;
-		color: $color-1;
+		color: $color-4;
 		text-shadow: 0 1px 3px rgba(#000, .1);
 	}
 
@@ -225,41 +230,6 @@ Intro
 
 		#cd-intro-tagline {
 			padding-top: 250px;
-		}
-	}
-}
-
-.cd-btn {
-	display: inline-block;
-	padding: 1em 1.8em;
-	background-color: rgba($color-2, .9);
-	margin-top: 1em;
-	border-radius: 20em;
-	@include backface-visibility(hidden);
-	@include font-smoothing;
-	color: $color-4;
-
-	.no-touch &:hover {
-		background-color: rgba($color-2, 1);
-	}
-
-	@include MQ(L) {
-
-		&.is-hidden {
-			/* assign a position fixed and move outside the viewport (on the right) */
-			opacity: 0;
-			position: fixed;
-			right: -20%;
-			top: 0;
-			padding: .8em 1.2em;
-			margin: 14px 0 0;
-			@include transition(right 0.3s, opacity 0.3s);
-
-			&.slide-in {
-				/* slide in when the secondary nav gets fixed */
-				right: 5%;
-				opacity: 1;
-			}
 		}
 	}
 }
