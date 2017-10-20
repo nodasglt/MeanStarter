@@ -19,10 +19,7 @@ import { AppState } from './app.service';
     './app.component.scss'
   ],
   template: `
-    <navbar></navbar>
-    <main>
-      <router-outlet></router-outlet>
-    </main>
+    <router-outlet></router-outlet>
 
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
 
