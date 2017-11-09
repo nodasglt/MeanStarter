@@ -66,7 +66,7 @@ module.exports = function (env) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-path
        */
-      path: helpers.root('../docker/kong/www'),
+      path: helpers.root('../docker/kong/www'), // Will be copied to nginx
 
       /**
        * Specifies the name of each output file on disk.
