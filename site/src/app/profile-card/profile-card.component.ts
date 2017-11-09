@@ -1,7 +1,19 @@
 import {
   Component,
-  trigger, state, style, transition, animate
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  Inject,
 } from '@angular/core';
+
+import {
+    MatDialog,
+    MatDialogRef,
+    MAT_DIALOG_DATA,
+} from '@angular/material';
+
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -24,10 +36,34 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfileCardComponent {
 
     flip: string = 'inactive';
-    constructor() {}
 
     toggleFlip() {
       this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
     }
 
+    constructor(
+        public dialog: MatDialog
+    ) {}
+
+    openDialog(): void {
+        let dialogRef = this.dialog.open(ProfileDialog, {
+          width: '90vw',
+          data: {  }
+        });
+    }
+}
+
+@Component({
+  selector: 'profile-dialog',
+  templateUrl: 'profile-dialog.component.html',
+})
+export class ProfileDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<ProfileDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

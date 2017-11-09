@@ -2,10 +2,15 @@
     <div class="tp-box" [@flipState]="flip">
             <mat-card class="tp-box__side">
                 <div class="back-img"></div>
-                <img mat-card-image class="img-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" alt="Photo of a Shiba Inu">
+                <img
+                    mat-card-image
+                    class="img-circle"
+                    src="https://i0.wp.com/circuits.io/assets/circuits-default-gravatar.png"
+                    alt="Photo of a Shiba Inu"
+                    (click)="openDialog()">
                 <mat-card-content>
-                    <mat-card-title class="name">Shiba Inu</mat-card-title>
-                    <mat-card-subtitle class="title">Dog Breed</mat-card-subtitle>
+                    <mat-card-title class="name"><ng-content select="[card-name]"></ng-content></mat-card-title>
+                    <mat-card-subtitle class="title"><ng-content select="[card-title]"></ng-content></mat-card-subtitle>
                 </mat-card-content>
                 <mat-card-actions>
                     <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip()">More</button>
@@ -15,11 +20,12 @@
                 <h2 class="about">About Me</h2>
                 <mat-card-content>
                     <hr class="line">
-                    <p style="text-align: center">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta. Blanditiis rem amet repellat,
-                         dolores nihil quae in mollitia asperiores ut rerum repellendus, voluptatum eum, officia laudantium quaerat?
+                    <p class="wordwrap">
+                        <ng-content select="[card-summary]"></ng-content>
                     </p>
                     <hr class="line">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
                 </mat-card-content>
                 <mat-card-actions>
                     <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip()">Less</button>

@@ -14,8 +14,15 @@
     transition: transform 1s;
     left: 0;
 }
+
+.wordwrap {
+   word-wrap: break-word;      /* IE */
+   max-height: 200px;
+   overflow: hidden;
+}
+
 .tp-box__side {
-    //width: 100%;
+    width: 250px;
     height: 350px;
     padding: 25px;
     position: absolute;
@@ -34,6 +41,11 @@
     width: 80%;
     border-radius: 30%;
     box-shadow: 0px 0px 30px black;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.98;
+    }
 }
 
 .back-img {
@@ -79,4 +91,34 @@
     font-weight: normal;
     padding-bottom: 0px;
     margin: 5px;
+}
+
+/* Style all font awesome icons */
+.fa {
+    padding: 13px;
+    font-size: 20px;
+    width: 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+    opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
 }
