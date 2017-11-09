@@ -31,12 +31,21 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 
-import { MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
+import { MatButtonModule,
+         MatIconModule,
+         MatCardModule,
+         MatDialogModule,
+         MatTabsModule,
+} from '@angular/material';
 
 import { ParticlesModule } from 'angular-particle';
 
-import { ProfileCardComponent } from './profile-card';
+import { ProfileCardComponent, ProfileDialog } from './profile-card';
 import { NavBarComponent } from './navbar';
+import { LandingPageComponent } from './landing-page';
+import { TeamComponent } from './team';
+import { PublicationsComponent } from './publications';
+import { ProjectsComponent, ProjectDialog } from './projects';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -64,8 +73,18 @@ type StoreType = {
     HomeComponent,
     ProfileCardComponent,
     NavBarComponent,
+    LandingPageComponent,
+    TeamComponent,
+    ProfileDialog,
+    PublicationsComponent,
+    ProjectsComponent,
+    ProjectDialog,
     NoContentComponent,
     XLargeDirective
+  ],
+  entryComponents: [
+    ProfileDialog,
+    ProjectDialog,
   ],
   /**
    * Import Angular's modules.
@@ -82,6 +101,8 @@ type StoreType = {
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MatDialogModule,
+    MatTabsModule,
     ParticlesModule,
   ],
   /**
