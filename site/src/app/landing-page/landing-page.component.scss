@@ -1,0 +1,42 @@
+@import "./node_modules/bourbon/app/assets/stylesheets/bourbon"; // http://bourbon.io/
+
+@import '../navbar/partials/variables'; // colors, fonts etc...
+
+@import '../navbar/partials/mixins'; // custom mixins
+
+@import '../navbar/partials/layout'; // responsive grid and media queries
+
+.cd-container { /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
+	width: 90%;
+	max-width: $M; // breakpoints inside partials > _layout.scss
+	margin: 0 auto;
+	@include clearfix;
+}
+
+.cd-section {
+	margin: 0 auto;
+	padding: 2em 0;
+
+	h2 {
+		@include font-size(20px);
+		margin-bottom: .6em;
+		font-weight: 700;
+	}
+
+	p {
+		line-height: 1.6;
+	}
+
+	@include MQ(L) {
+		margin: 0 auto;
+		padding: 4em 0;
+
+		h2 {
+			@include font-size(30px);
+		}
+
+		p {
+			@include font-size(20px);
+		}
+	}
+}
