@@ -36,13 +36,6 @@ Modules - reusable parts of our design
 
 -------------------------------- */
 
-.cd-container { /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
-	width: 90%;
-	max-width: $M; // breakpoints inside partials > _layout.scss
-	margin: 0 auto;
-	@include clearfix;
-}
-
 .has-top-margin {
 	/* this class is given - using jQuery - to the .cd-main-content following the .cd-secondary-nav when it becomes fixed */
 	@include MQ(L) {
@@ -255,7 +248,7 @@ Secondary Fixed Navigation
 		@include border-radius;
 		background: rgba($color-1, .96);
 		visibility: hidden;
-		z-index: 1;
+		//z-index: 1;
 		-webkit-backface-visibility: hidden;
 		backface-visibility: hidden;
 		@include transform(scale(0));
@@ -285,7 +278,7 @@ Secondary Fixed Navigation
 	}
 
 	@include MQ(L) {
-		z-index: $secondary-bar-zindex;
+		//z-index: $secondary-bar-zindex;
 		height: $bar-height-full;
 		background-color: rgba($color-1, .96);
 		@include transition(height 0.3s);
@@ -466,39 +459,5 @@ Secondary Fixed Navigation
 
 	@include MQ(L) {
 		display: none;
-	}
-}
-
-/* --------------------------------
-
-Placeholder Sections
-
--------------------------------- */
-
-.cd-section {
-	margin: 0 auto;
-	padding: 2em 0;
-
-	h2 {
-		@include font-size(20px);
-		margin-bottom: .6em;
-		font-weight: 700;
-	}
-
-	p {
-		line-height: 1.6;
-	}
-
-	@include MQ(L) {
-		margin: 0 auto;
-		padding: 4em 0;
-
-		h2 {
-			@include font-size(30px);
-		}
-
-		p {
-			@include font-size(20px);
-		}
 	}
 }

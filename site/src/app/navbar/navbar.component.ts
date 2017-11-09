@@ -7,8 +7,10 @@ import {
     ViewChildren,
     QueryList,
     AfterViewInit,
-    OnInit
+    OnDestroy,
 } from '@angular/core';
+
+import { Subscription } from 'rxjs/Subscription';
 
 import {
     Router,
@@ -21,7 +23,7 @@ import {
     styleUrls: [ 'navbar.component.scss' ],
     templateUrl: 'navbar.component.html',
 })
-export class NavBarComponent implements AfterViewInit, OnInit {
+export class NavBarComponent implements AfterViewInit, OnDestroy {
     public scrollPosition: number = 0;
     public isHidden: boolean = false;
     public isFixed: boolean = false;
@@ -29,12 +31,14 @@ export class NavBarComponent implements AfterViewInit, OnInit {
     public isOpen: boolean = false;
     public isPrimaryVisible: boolean = false;
     public secondaryNavTopPosition: number;
-    public taglineOffesetTop: number;
+    //public taglineOffesetTop: number;
 
     private fragment: string;
 
+    private toClean: Subscription[];
+
     @ViewChild('SecondaryNav') private secondaryNav: ElementRef;
-    @ViewChild('IntroTagline') private introTagline: ElementRef;
+    //@ViewChild('IntroTagline') private introTagline: ElementRef;
 
     @ViewChildren('placeholder') private placeholders: QueryList<ElementRef>;
 
@@ -46,14 +50,13 @@ export class NavBarComponent implements AfterViewInit, OnInit {
     ) {
         router.events.subscribe(s => {
             if (s instanceof NavigationEnd) {
-                const tree = router.parseUrl(router.url);
-                if (tree.fragment) {
-                    const element = document.querySelector("#" + tree.fragment);
-                    if (element) {
-                        element.scrollIntoView(element);
-                        this.fragment = tree.fragment;
-                        this.skipUpdate = true;
-                    }
+                if (this.router.url !== '/')
+                {
+                    window.scroll({
+                        top: this.secondaryNavTopPosition + 1,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
                 }
             }
         });
@@ -61,15 +64,21 @@ export class NavBarComponent implements AfterViewInit, OnInit {
 
     ngAfterViewInit() {
         this.secondaryNavTopPosition = this.secondaryNav.nativeElement.offsetTop;
-        this.taglineOffesetTop = this.introTagline.nativeElement.offsetTop
-                               + this.introTagline.nativeElement.offsetHeight
-                               + parseInt(window.getComputedStyle(this.introTagline.nativeElement).paddingTop.replace('px', ''));
+        //this.taglineOffesetTop = this.introTagline.nativeElement.offsetTop
+        //                       + this.introTagline.nativeElement.offsetHeight
+        //                       + parseInt(window.getComputedStyle(this.introTagline.nativeElement).paddingTop.replace('px', ''));
+    }
+
+    ngOnDestroy() {
+        this.toClean.forEach(sub => {
+            sub.unsubscribe();
+        });
     }
 
     @HostListener('document:scroll')
     public onScroll() {
         this.scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
-        this.isHidden = this.scrollPosition > this.taglineOffesetTop;
+    //    this.isHidden = this.scrollPosition > this.taglineOffesetTop;
         if (this.scrollPosition > this.secondaryNavTopPosition) {
             this.isFixed = true;
             setTimeout(() => {
@@ -82,8 +91,6 @@ export class NavBarComponent implements AfterViewInit, OnInit {
                 this.slideIn = false;
             }, 50);
         }
-
-        this.updateSecondaryNavigation();
     }
 
     //on mobile - open/close secondary navigation clicking/tapping the .cd-secondary-nav-trigger
@@ -95,54 +102,4 @@ export class NavBarComponent implements AfterViewInit, OnInit {
 	openPrimaryNav() {
     	this.isPrimaryVisible = !this.isPrimaryVisible;
 	};
-
-    public height: number;
-
-    updateSecondaryNavigation() {
-        if (this.skipUpdate) {
-            this.skipUpdate = false;
-            return;
-        }
-        const secondaryNav = this.secondaryNav.nativeElement;
-        this.placeholders
-            .map(item => item.nativeElement)
-            .forEach(item => {
-                const height = item.offsetHeight
-                           + parseInt(window.getComputedStyle(item).paddingTop.replace('px', ''))
-                           + parseInt(window.getComputedStyle(item).paddingBottom.replace('px', ''));
-                this.height = height;
-                if ( ( item.offsetTop - secondaryNav.offsetHeight <= this.scrollPosition )
-                  && ( item.offsetTop +  height - secondaryNav.offsetHeight > this.scrollPosition ) ) {
-                    this.fragment = item.id;
-                }
-            });
-	}
-
-    isActive(id: string) {
-        console.log(id + " == " + this.fragment);
-        return id == this.fragment;
-    }
-
-    myParams: object = {};
-    myStyle: object = {};
-
-    ngOnInit() {
-        this.myStyle = {
-            'height': '100%'
-        };
-
-        this.myParams = {
-            particles: {
-                number: {
-                    value: 200,
-                },
-                color: {
-                    value: '#ff0000'
-                },
-                shape: {
-                    type: 'triangle',
-                },
-            }
-        };
-    }
 }
