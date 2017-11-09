@@ -31,3 +31,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+.route-container {
+    position: relative;
+}
+
+.route-container>* {
+    display: block;
+}

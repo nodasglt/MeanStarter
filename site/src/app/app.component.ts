@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { AppState } from './app.service';
 
+import { trigger, transition, group, query, style, animate } from '@angular/animations';
+
 /**
  * App Component
  * Top Level Component
@@ -19,42 +21,28 @@ import { AppState } from './app.service';
     './app.component.scss'
   ],
   template: `
-    <router-outlet></router-outlet>
+    <landing-page></landing-page>
+    <main class=route-container [@routeAnimation]="getDepth(myOutlet)">
+        <router-outlet #myOutlet="outlet"></router-outlet>
+    </main>
 
-    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-
-    <div>
-      <a [routerLink]=" ['./'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Index
-      </a>
-      <a [routerLink]=" ['./home'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Home
-      </a>
-      <a [routerLink]=" ['./detail'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Detail
-      </a>
-      <a [routerLink]=" ['./barrel'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Barrel
-      </a>
-      <a [routerLink]=" ['./about'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        About
-      </a>
-    </div>
-
-    <footer>
-      <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
-      <div>
-        <a [href]="url">
-          <img [src]="angularclassLogo" width="25%">
-        </a>
-      </div>
+    <footer style="width: 100%;">
+      <span style="text-align: center; background: #030d18;width: 100%;  display:block; height:50px;color=rgb(133, 31, 13);">© Copyright 1996 - 2017 | Athens University of Economics and Business</span>
     </footer>
-  `
+  `,
+  animations: [
+      trigger('routeAnimation', [
+          transition('* => *', [
+              style({ height: '!' }),
+              query(':enter', style({ transform: 'translateX(100%)' }), { optional: true }),
+              query(':enter, :leave', style({ position: 'absolute', top: 0, left: 0, right: 0 }), { optional: true }),
+              group([
+                  query(':leave', [animate('0.3s cubic-bezier(.35, 0, .25, 1)', style({ transform: 'translateX(-100%)' }))], { optional: true }),
+                  query(':enter', [animate('0.3s cubic-bezier(.35, 0, .25, 1)', style({ transform: 'translateX(0%)' }))], { optional: true })
+              ])
+          ])
+      ])
+  ]
 })
 export class AppComponent implements OnInit {
   public angularclassLogo = 'assets/img/angularclass-avatar.png';
@@ -69,6 +57,9 @@ export class AppComponent implements OnInit {
     console.log('Initial App State', this.appState.state);
   }
 
+  getDepth(outlet) {
+      return outlet.activatedRouteData['depth'];
+  }
 }
 
 /**
