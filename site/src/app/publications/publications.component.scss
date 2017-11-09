@@ -1,0 +1,21 @@
+.content {
+    overflow: hidden;
+}
+
+section {
+    max-width: 90vw;
+}
+
+.list {
+    padding: 40px;
+    list-style: circle;
+    li {
+        display: list-item;
+        list-style-type: disc;
+
+        font-family: Poppins;
+        font-weight: normal;
+        line-height: 1.7em;
+        color: #666666;
+    }
+}
