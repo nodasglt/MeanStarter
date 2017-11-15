@@ -49,9 +49,17 @@
                 </a>
             </li>
             <li>
-                <a [routerLink]="[]" fragment="cd-placeholder-5">
-                    <b>Stats</b>
-                    <span></span><!-- icon -->
+                <a [routerLink]=" ['/phds'] "
+                  routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+                  <b>Phds</b>
+                  <span></span><!-- icon -->
+                </a>
+            </li>
+            <li>
+                <a [routerLink]=" ['/research'] "
+                  routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+                  <b>Research</b>
+                  <span></span><!-- icon -->
                 </a>
             </li>
         </ul>
