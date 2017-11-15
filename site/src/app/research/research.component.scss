@@ -1,0 +1,13 @@
+.list {
+    padding: 30px;
+    list-style: circle;
+    li {
+        display: list-item;
+        list-style-type: disc;
+
+        font-family: Poppins;
+        font-weight: normal;
+        line-height: 1.7em;
+        color: #666666;
+    }
+}
