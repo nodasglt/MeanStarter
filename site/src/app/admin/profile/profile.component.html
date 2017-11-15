@@ -1,0 +1,29 @@
+<!--div *ngIf="test | async; let test; else load">
+The token is: {{test.message}}
+</div>
+
+<ng-template #load>
+Loading...
+</ng-template-->
+
+<mat-sidenav-container class="example-container">
+    <mat-sidenav color="primary" #sidenav mode="side" class="example-sidenav">
+        <!--button mat-raised-button color="primary" type="button">Profile</button-->
+        <mat-nav-list>
+            <mat-list-item>
+                <a mat-button [routerLink]=" ['/profile'] "
+                  routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+                  Info
+                </a>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-toolbar color="primary">
+        <span (click)="sidenav.toggle()">Profile</span>
+    </mat-toolbar>
+    <div class="example-sidenav-content">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container>
