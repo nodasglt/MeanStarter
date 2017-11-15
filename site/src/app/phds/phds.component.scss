@@ -1,0 +1,36 @@
+.content {
+    overflow: hidden;
+    font-size: 30px;
+
+    h2 {
+        margin-top: 20px;
+    }
+
+    ul {
+        li {
+            h4 {
+                cursor: pointer;
+                color: rgb(134, 18, 18);
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+section {
+    max-width: 70vw;
+}
+
+.list {
+    padding: 40px;
+    list-style: circle;
+    li {
+        display: list-item;
+        list-style-type: disc;
+
+        font-family: Poppins;
+        font-weight: normal;
+        line-height: 1.7em;
+        color: #666666;
+    }
+}
