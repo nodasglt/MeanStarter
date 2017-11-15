@@ -1,6 +1,7 @@
 import {
     Component,
     Inject,
+    ViewEncapsulation,
 } from '@angular/core';
 
 import {
@@ -12,7 +13,7 @@ import {
 @Component({
     selector: 'projects',
     styleUrls: ['../landing-page/landing-page.component.scss', 'projects.component.scss'],
-    templateUrl: 'projects.component.html'
+    templateUrl: 'projects.component.html',
 })
 export class ProjectsComponent {
     constructor(
@@ -20,8 +21,8 @@ export class ProjectsComponent {
     ) {}
 
     onClick(): void {
+        console.log(window.innerHeight);
         let dialogRef = this.dialog.open(ProjectDialog, {
-            //width: '90vw',
             data: {  }
         });
     }
@@ -30,6 +31,8 @@ export class ProjectsComponent {
 @Component({
     selector: 'project-dialog',
     templateUrl: 'project-dialog.component.html',
+    styleUrls: ['projects-dialog.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class ProjectDialog {
 

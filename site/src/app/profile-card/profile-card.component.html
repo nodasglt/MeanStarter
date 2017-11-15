@@ -5,30 +5,43 @@
                 <img
                     mat-card-image
                     class="img-circle"
-                    src="https://i0.wp.com/circuits.io/assets/circuits-default-gravatar.png"
-                    alt="Photo of a Shiba Inu"
+                    [src]="profile.img"
                     (click)="openDialog()">
                 <mat-card-content>
-                    <mat-card-title class="name"><ng-content select="[card-name]"></ng-content></mat-card-title>
-                    <mat-card-subtitle class="title"><ng-content select="[card-title]"></ng-content></mat-card-subtitle>
+                    <mat-card-title class="name">{{profile.name}}</mat-card-title>
+                    <mat-card-subtitle class="title">{{profile.title}}</mat-card-subtitle>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip()">More</button>
+                    <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip()">Contact Info</button>
                 </mat-card-actions>
             </mat-card>
             <mat-card class=" tp-box__side tp-box__back">
-                <h2 class="about">About Me</h2>
+                <h2 class="about">Contact</h2>
                 <mat-card-content>
                     <hr class="line">
-                    <p class="wordwrap">
+                    <!--p class="wordwrap">
                         <ng-content select="[card-summary]"></ng-content>
-                    </p>
+                    </p-->
+                    <mat-nav-list>
+                        <mat-list-item>
+                            <mat-icon matListIcon>phone</mat-icon>
+                            <h3 matLine>{{profile.phone}}</h3>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-icon matListIcon>mail</mat-icon>
+                            <h3 matLine> <a href="mailto:test@company.com">{{profile.mail}}</a> </h3>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-icon matListIcon>place</mat-icon>
+                            <h3 matLine>{{profile.address}}</h3>
+                        </mat-list-item>
+                    </mat-nav-list>
                     <hr class="line">
                     <a href="#" class="fa fa-facebook"></a>
                     <a href="#" class="fa fa-twitter"></a>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip()">Less</button>
+                    <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip()">Back</button>
                 </mat-card-actions>
             </mat-card>
     </div>

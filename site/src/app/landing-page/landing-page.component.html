@@ -1,3 +1,6 @@
 <navbar>
     <particles [params]="myParams" [style]="myStyle" background></particles>
 </navbar>
+<main class=route-container [@routeAnimation]="getDepth(myOutlet)">
+    <router-outlet #myOutlet="outlet"></router-outlet>
+</main>

@@ -6,6 +6,8 @@ import {
   transition,
   animate,
   Inject,
+  Input,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import {
@@ -15,6 +17,17 @@ import {
 } from '@angular/material';
 
 import { ActivatedRoute } from '@angular/router';
+
+export interface UserProfile {
+    img: string,
+    name: string;
+    title: string;
+    phone: string;
+    mail: string;
+    address: string;
+    bio: string;
+    //TODO: Add social[]
+}
 
 @Component({
   selector: 'profile-card',
@@ -35,6 +48,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfileCardComponent {
 
+    @Input() profile: UserProfile;
+
     flip: string = 'inactive';
 
     toggleFlip() {
@@ -47,8 +62,7 @@ export class ProfileCardComponent {
 
     openDialog(): void {
         let dialogRef = this.dialog.open(ProfileDialog, {
-          width: '90vw',
-          data: {  }
+          data: this.profile,
         });
     }
 }
@@ -56,12 +70,14 @@ export class ProfileCardComponent {
 @Component({
   selector: 'profile-dialog',
   templateUrl: 'profile-dialog.component.html',
+  styles: [ '.mat-dialog-container { max-width: 1400px; }' ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProfileDialog {
 
   constructor(
     public dialogRef: MatDialogRef<ProfileDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public profile: UserProfile) { }
 
   onNoClick(): void {
     this.dialogRef.close();
