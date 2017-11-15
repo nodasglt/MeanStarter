@@ -12,11 +12,11 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
-const multer = require('multer');
+//const multer = require('multer');
 
 var jwt = require('jsonwebtoken');
 
-const upload = multer({ dest: path.join(__dirname, 'uploads') });
+//const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
 /**
 * Load environment variables from .env file, where API keys and passwords are configured.
@@ -27,7 +27,6 @@ dotenv.load({ path: '.env' });
 * Controllers (route handlers).
 */
 const userController = require('./controllers/user');
-const apiController = require('./controllers/api');
 
 /**
 * API keys and Passport configuration.
@@ -54,9 +53,7 @@ mongoose.connection.on('error', (err) => {
 * Express configuration.
 */
 app.set('host', process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0');
-app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3000);
 app.use(expressStatusMonitor());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -79,27 +76,29 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 /**
 * API examples routes.
 */
-app.get('/api', apiController.getApi);
-app.get('/api/upload', apiController.getFileUpload);
-app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
-app.get('/api/google-maps', apiController.getGoogleMaps);
+//app.get('/api', apiController.getApi);
+//app.get('/api/upload', apiController.getFileUpload);
+//app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
+//app.get('/api/google-maps', apiController.getGoogleMaps);
+
+app.get('/test', (req, res) => {
+    res.json({ message: 'xD' });
+});
 
 /**
 * OAuth authentication routes. (Sign in)
 */
-app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
-    payload = {
-        scope: 'client:outgoing?clientName=matt',
-        iss: 'APP_SID',
-    };
-    res.statusCode = 200;
-    res.json({ token: jwt.sign({
+app.get('/google', passport.authenticate('google', { scope: 'profile email' }));
+app.get('/google/callback', passport.authenticate('google'), (req, res) => {
+    res.status(200).json({ token: jwt.sign({
         exp: Math.floor(Date.now() / 1000) + (60 * 60),
-        data: 'foobar',
-        ...payload
-    }, 'secret') });
-});
+        iss: 'uollmAu4xWTAVwocrQxP2qTBXTgRJAD1'
+    }, 'XQ7E4NtSuAOYQPz3aKO7oCXwmijX56ib', { algorithm: 'HS256' }) });
+},
+(err, req, res, next) => {
+    // Handle error
+    return res.status(401).json({ success: false, message: err })
+ });
 
 /**
 * Error Handler.

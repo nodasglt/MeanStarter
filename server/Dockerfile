@@ -1,14 +1,17 @@
-FROM node:6-slim
+FROM node:8-slim
 
 COPY . /starter
 COPY package.json /starter/package.json
-COPY .env.example /starter/.env.example
+COPY .env /starter/.env
 
 WORKDIR /starter
 
 ENV NODE_ENV production
+# ENV NODE_ENV development
 RUN npm install --production
+# RUN npm install -g nodemon
 
-CMD ["npm","start"]
+# ENTRYPOINT ["nodemon","app.js"]
+ENTRYPOINT ["node","app.js"]
 
-EXPOSE 8888
+EXPOSE 3000
