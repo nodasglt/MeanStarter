@@ -19,9 +19,12 @@ import { AppState } from './app.service';
     './app.component.scss'
   ],
   template: `
-    <router-outlet></router-outlet>
-
-    <footer-bar></footer-bar>
+    <div style="display: flex; min-height: 100vh; flex-direction: column;">
+        <div style="flex: 1;">
+            <router-outlet></router-outlet>
+        </div>
+        <footer-bar></footer-bar>
+    </div>
   `,
 })
 export class AppComponent implements OnInit {

@@ -1,68 +1,60 @@
-<header class="cd-header">
-    <div id="cd-logo" [class.is-hidden]="isHidden" [class.slide-in]="slideIn"><a href="#0"><img src="assets/img/eltrun.png" alt="Logo"></a></div>
-    <nav class="cd-primary-nav" (click)="openPrimaryNav()">
-        <ul [class.is-visible]="isPrimaryVisible">
-            <!-- inser more links here -->
-            <li><a href="#0">Login</a></li>
-            <li><a href="#0">Tour</a></li>
-            <li><a href="#0">Buy</a></li>
-        </ul>
-    </nav> <!-- cd-primary-nav -->
-</header>
-<section id="cd-intro">
-    <ng-content select="[background]"></ng-content>
-    <!--<div #IntroTagline id="cd-intro-tagline">
-        <h1>Sample text</h1>
-    </div> <! #cd-intro-tagline -->
-</section> <!-- #cd-intro -->
-
-<div #SecondaryNav class="cd-secondary-nav" [class.is-fixed]="isFixed" [class.animate-children]="slideIn">
-    <div class="cd-secondary-nav-trigger" [class.menu-is-open]="isOpen" (click)="openSecondaryNavTrigger()">Menu<span></span></div> <!-- button visible on small devices -->
-    <nav>
-        <ul [class.is-visible]="isOpen">
-            <li>
-                <a [routerLink]=" ['/'] "
-                  routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-                  <b>About</b>
-                  <span></span><!-- icon -->
-                </a>
-            </li>
-            <li>
-                <a [routerLink]=" ['/projects'] "
-                  routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-                  <b>Projects</b>
-                  <span></span><!-- icon -->
-                </a>
-            </li>
-            <li>
-                <a [routerLink]=" ['/publications'] "
-                  routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-                  <b>Publications</b>
-                  <span></span><!-- icon -->
-                </a>
-            </li>
-            <li>
-                <a [routerLink]=" ['/team'] "
-                  routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-                  <b>Team</b>
-                  <span></span><!-- icon -->
-                </a>
-            </li>
-            <li>
-                <a [routerLink]=" ['/phds'] "
-                  routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-                  <b>Phds</b>
-                  <span></span><!-- icon -->
-                </a>
-            </li>
-            <li>
-                <a [routerLink]=" ['/research'] "
-                  routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-                  <b>Research</b>
-                  <span></span><!-- icon -->
-                </a>
-            </li>
-        </ul>
+<div #Header *ngIf="window.innerWidth < 960" class="header">
+    <img src="assets/img/eltrun.jpg">
+</div>
+<mat-toolbar color="primary" style="z-index: 3;" [class.sticky]="!(window.innerWidth < 960) || isSticky">
+    <div fxLayout fxShow="false" fxShow.gt-sm style="position: absolute; top:10px; width: 100%;">
+        <img src="assets/img/eltrun3.jpg" style="height: 100px; max-width: 100%">
+    </div>
+    <nav mat-tab-nav-bar fxLayout fxShow="false" fxShow.gt-sm style="margin-left: 340px;" color="accent">
+        <a mat-tab-link class="white"
+           routerLink="/" [routerLinkActiveOptions]= "{exact: true}"
+           routerLinkActive #rla="routerLinkActive"
+           [active]="rla.isActive">
+          About
+        </a>
+        <a mat-tab-link class="white"
+           routerLink="/projects"
+           routerLinkActive #rla2="routerLinkActive"
+           [active]="rla2.isActive">
+          Projects
+        </a>
+        <a mat-tab-link class="white"
+           routerLink="/publications"
+           routerLinkActive #rla3="routerLinkActive"
+           [active]="rla3.isActive">
+          Publications
+        </a>
+        <a mat-tab-link class="white"
+           routerLink="/team"
+           routerLinkActive #rla4="routerLinkActive"
+           [active]="rla4.isActive">
+          Team
+        </a>
+        <a mat-tab-link class="white"
+           routerLink="/phds"
+           routerLinkActive #rla5="routerLinkActive"
+           [active]="rla5.isActive">
+          PhDs
+        </a>
+        <a mat-tab-link class="white"
+           routerLink="/research"
+           routerLinkActive #rla6="routerLinkActive"
+           [active]="rla6.isActive">
+          Research
+        </a>
     </nav>
-</div> <!-- .cd-secondary-nav -->
-<div [class.has-top-margin]="isFixed"></div> <!-- .cd-main-content -->
+    <span class="fill-remaining-space"></span>
+    <button mat-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>
+     <mat-icon>menu</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item routerLink="/"             routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">About</button>
+    <button mat-menu-item routerLink="/projects"     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Projects</button>
+    <button mat-menu-item routerLink="/publications" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Publications</button>
+    <button mat-menu-item routerLink="/team"         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Team</button>
+    <button mat-menu-item routerLink="/phds"         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">PhDs</button>
+    <button mat-menu-item routerLink="/research"     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Research</button>
+</mat-menu>
+<div class="pad" style="height: 100px;" *ngIf="!(window.innerWidth < 960)"></div>
+<div class="pad" style="height: 64px;" *ngIf="(window.innerWidth < 960) && isSticky"></div>

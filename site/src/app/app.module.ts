@@ -22,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StorageServiceModule } from 'angular-webstorage-service';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 /*
 * Platform and Environment providers/directives/pipes
 */
@@ -45,6 +47,7 @@ import { MatButtonModule,
     MatToolbarModule,
     MatListModule,
     MatExpansionModule,
+    MatMenuModule,
 } from '@angular/material';
 
 import { ParticlesModule } from 'angular-particle';
@@ -140,7 +143,9 @@ type StoreType = {
         MatToolbarModule,
         MatListModule,
         MatExpansionModule,
+        MatMenuModule,
         ParticlesModule,
+        FlexLayoutModule,
         StorageServiceModule,
     ],
     /**

@@ -24,7 +24,7 @@ $mat-dark-blue: (
         100 : #000000,
         200 : #000000,
         300 : #ffffff,
-        400 : #ffffff, 
+        400 : #ffffff,
         500 : #ffffff,
         600 : #ffffff,
         700 : #ffffff,
@@ -37,8 +37,42 @@ $mat-dark-blue: (
     )
 );
 
+$mat-dark-red: (
+    50 : #efe4e4,
+    100 : #d6bdbd,
+    200 : #bb9191,
+    300 : #9f6464,
+    400 : #8b4343,
+    500 : #762222,
+    600 : #6e1e1e,
+    700 : #631919,
+    800 : #591414,
+    900 : #460c0c,
+    A100 : #ff7e7e,
+    A200 : #ff4b4b,
+    A400 : #ff1818,
+    A700 : #fd0000,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
 $primary: mat-palette($mat-dark-blue);
-$accent:  mat-palette($mat-amber, A200, A100, A400);
+$accent:  mat-palette($mat-dark-red, A200, A100, A400);
 
 $theme: mat-light-theme($primary, $accent);
 
@@ -63,6 +97,12 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+}
+
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
 }
 
 .route-container {
