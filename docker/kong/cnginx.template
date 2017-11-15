@@ -3,11 +3,43 @@ daemon ${{NGINX_DAEMON}};                     # can be set by kong.conf
 
 pid pids/nginx.pid;                      # this setting is mandatory
 error_log logs/error.log ${{LOG_LEVEL}}; # can be set by kong.conf
-events {}
+events {
+    worker_connections 768;
+}
 
 http {
     charset UTF-8;
     include       /mime.types;
+    ##
+    # Basic Settings
+    ##
+
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    keepalive_timeout 65;
+    types_hash_max_size 2048;
+    # server_tokens off;
+
+    # server_names_hash_bucket_size 64;
+    # server_name_in_redirect off;
+
+    default_type application/octet-stream;
+
+    ##
+    # Gzip Settings
+    ##
+
+    gzip on;
+    gzip_disable "msie6";
+
+    # gzip_vary on;
+    # gzip_proxied any;
+    # gzip_comp_level 6;
+    # gzip_buffers 16 8k;
+    # gzip_http_version 1.1;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
 > if anonymous_reports then
     ${{SYSLOG_REPORTS}}
 > end
@@ -92,26 +124,21 @@ http {
         set_real_ip_from   $(trusted_ips[i]);
 > end
 
-        sendfile on;
-
         # here, we declare our custom location serving our website
         # (or API portal) which we can optimize for serving static assets
         location / {
             root   /var/www;
             index  index.html;
-            expires -1;
-            add_header Pragma "no-cache";
-            add_header Cache-Control "no-store, no-cache, must-revalidate, post-check=0, pre-check=0";
             try_files $uri$args $uri$args/ $uri $uri/ /index.html =404;
         }
 
-        # Kong's Proxy location / has been changed to /api/v1
+        # Kong's Proxy location / has been changed to /api/
         location /api/ {
-            set $upstream_host               '';
+            set $upstream_host nil;
+            set $upstream_scheme nil;
+            set $upstream_uri nil;
             set $upstream_upgrade            '';
             set $upstream_connection         '';
-            set $upstream_scheme             '';
-            set $upstream_uri                '';
             set $upstream_x_forwarded_for    '';
             set $upstream_x_forwarded_proto  '';
             set $upstream_x_forwarded_host   '';

@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3'
 
 services:
   kong-database:
@@ -15,8 +15,7 @@ services:
   kong-migration:
     image: kong
     depends_on:
-      kong-database:
-        condition: service_healthy
+      - kong-database
     environment:
       - KONG_DATABASE=postgres
       - KONG_PG_HOST=kong-database
@@ -25,10 +24,8 @@ services:
   kong:
     build: kong/
     depends_on:
-      kong-database:
-        condition: service_healthy
-      kong-migration:
-        condition: service_started
+      - kong-database
+      - kong-migration
     environment:
       - KONG_DATABASE=postgres
       - KONG_PG_HOST=kong-database
@@ -39,8 +36,53 @@ services:
       - 8443
       - 8444
     ports:
-        - "8000:8000"
+      - 8000:8000
     healthcheck:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8000 || exit 1"]
       interval: 5s
       retries: 10
+    volumes:
+      - ./kong/www:/var/www
+    links:
+      - web
+    depends_on:
+      - web
+
+  konga:
+    image: pantsel/konga
+    ports:
+      - 8002:1337
+    environment:
+      - NODE_ENV=development
+    links:
+      - kong
+    depends_on:
+      - kong
+
+  mongo:
+    image: mongo:3.4
+
+  web:
+    build: ../server/
+    expose:
+     - 3000
+    environment:
+     - MONGODB_URI=mongodb://mongo:27017/test
+    links:
+     - mongo
+    depends_on:
+     - mongo
+    volumes:
+     - ../server:/starter
+
+  mongo-admin:
+    image: adicom/admin-mongo
+    ports:
+     - 8003:8003
+    links:
+     - mongo
+    environment:
+     - CONN_NAME=test
+     - DB_HOST=mongodb://mongo
+     - PORT=8003
+     - HOST=0.0.0.0
