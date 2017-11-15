@@ -4,7 +4,40 @@
 
 @include mat-core();
 
-$primary: mat-palette($mat-deep-purple);
+$mat-dark-blue: (
+    50 : #e1e2e3,
+    100 : #b3b6ba,
+    200 : #81868c,
+    300 : #4f565d,
+    400 : #29313b,
+    500 : #030d18,
+    600 : #030b15,
+    700 : #020911,
+    800 : #02070e,
+    900 : #010308,
+    A100 : #4e4eff,
+    A200 : #1b1bff,
+    A400 : #0000e7,
+    A700 : #0000ce,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff, 
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #ffffff,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$primary: mat-palette($mat-dark-blue);
 $accent:  mat-palette($mat-amber, A200, A100, A400);
 
 $theme: mat-light-theme($primary, $accent);
