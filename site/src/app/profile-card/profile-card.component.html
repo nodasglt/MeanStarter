@@ -1,6 +1,6 @@
 <div class="tp-wrapper">
-    <div class="tp-box" [@flipState]="flip">
-            <mat-card class="tp-box__side">
+    <div class="tp-box">
+            <mat-card class="tp-box__side" *ngIf="flip !== 'active'">
                 <div class="back-img"></div>
                 <img
                     mat-card-image
@@ -12,10 +12,10 @@
                     <mat-card-subtitle class="title">{{profile.title}}</mat-card-subtitle>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip()">Contact Info</button>
+                    <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip($event)">Contact Info</button>
                 </mat-card-actions>
             </mat-card>
-            <mat-card class=" tp-box__side tp-box__back">
+            <mat-card class=" tp-box__side" *ngIf="flip == 'active'">
                 <h2 class="about">Contact</h2>
                 <mat-card-content>
                     <hr class="line">
@@ -31,17 +31,13 @@
                             <mat-icon matListIcon>mail</mat-icon>
                             <h3 matLine> <a href="mailto:test@company.com">{{profile.mail}}</a> </h3>
                         </mat-list-item>
-                        <mat-list-item>
-                            <mat-icon matListIcon>place</mat-icon>
-                            <h3 matLine>{{profile.address}}</h3>
-                        </mat-list-item>
                     </mat-nav-list>
                     <hr class="line">
                     <a href="#" class="fa fa-facebook"></a>
                     <a href="#" class="fa fa-twitter"></a>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip()">Back</button>
+                    <button mat-raised-button color="accent" class="change-btn" (click)="toggleFlip($event)">Back</button>
                 </mat-card-actions>
             </mat-card>
     </div>

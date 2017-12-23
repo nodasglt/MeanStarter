@@ -1,32 +1,32 @@
 <div mat-dialog-content class="ffs" style="max-height: 100vh; overflow-x: overlay;">
-    <img src="http://opentech.webfactional.com/eltran/wp-content/uploads/2017/09/disrupt_logo1-300x88.png" alt="">
+    <mat-icon color="accent" (click)="onNoClick()" class="exit">clear</mat-icon>
+    <img [src]="data.img" alt="">
 
     <!--h1 mat-dialog-title style="font-family: Poppins; font-weight: 400; line-height: 25.5px; color: rgb(134, 18, 18);">
         DISRUPT
     </h1-->
 
     <p style="font-family: Poppins; font-weight: 400; line-height: 25.5px; color: rgb(102, 102, 102); margin-bottom: 20px; margin-top: 20px;">
-        Decentralised architectures for optimised operations via virtualized processes and manufacturing ecosystem collaboration
+        {{data.title}}
     </p>
 
     <div style="font-family: Poppins; font-weight: 400; line-height: 25.5px; color: rgb(102, 102, 102);">
         <p style="display: inline-block;">
-            <b style="font-weight: 600;">Call:</b> FOF-11 a-2016-DigitalAutomation <br>
-            <b style="font-weight: 600;">Instrument:</b> Research and Innovation Action (RIA) <br>
+            <b style="font-weight: 600;">Call:</b> {{data.call}} <br>
+            <b style="font-weight: 600;">Instrument:</b> {{data.instrument}} <br>
         </p>
         <p style="display: inline-block; min-width: 300px"></p>
         <p style="display: inline-block;">
-            <b style="font-weight: 600">Project Duration:</b> 3 Years (2016 -2019) <br>
-            <b style="font-weight: 600">Website:</b> (under construction) <br>
+            <b style="font-weight: 600">Project Duration:</b> {{data.duration}} <br>
+            <b style="font-weight: 600">Website:</b> {{data.site}} <br>
         </p>
     </div>
 
-    <div style="position: relative; overflow: hidden; margin-top:25px; padding-bottom: 36px">
+    <div style="position: relative; overflow: hidden; margin-top:25px;">
         <h3 style="color: rgb(134, 18, 18);">Summary</h3>
         <hr>
         <div style="font-family: Poppins; font-weight: 400; line-height: 25.5px; color: rgb(102, 102, 102); text-align: justify;">
-            Industry 4.0 is the next developmental stage in the organisation of the manufacturing value chain. ICT-based systems will play a major role, mainly by creating a virtual copy of the physical world and facilitating decentralised structures through Cyber-Physical Systems (CPS). Over the IoT, CPS cooperate with each other and humans in real-time. Via the Internet-of-Services, internal and cross-organisational services are utilised by participants of the value chain. DISRUPT aims to spearhead the transition to the next-generation manufacturing by facilitating the vision of a “Smart Factory”. The new era of manufacturing asks for flexible factories that can be quickly reprogrammed to provide faster time-to-market responding to global consumer demand, address mass-customisation needs and bring life to innovative products. The traditional automation pyramid seems unable to accommodate this transformation. Our concept is to DISRUPT that pyramid by utilising the capabilities offered by modern ICT to facilitate (i) in-depth (self-) monitoring of machines and processes, (ii) decision support and decentralised (self-) adjustment of production, (iii) effective collaboration of the different IoT-connected machines with tools, services and actors (iv) seamless communication of information and decisions from and to the plant floor and (v) efficient interaction with value chain partners. Within DISRUPT, each element of production is controlled via the IoT by its virtual counterpart. The data collected is analysed to detect complex events that trigger automated actions. DISRUPT offers a set of decision support tools based on three core modules (modelling, simulation and optimisation) and a secure and flexible “plug-n-play” platform that will allow engineers from different disciplines to collaborate in developing services. It will be cloud-based to accommodate the anticipated high data volume and computational needs, while offering accessibility via any device anywhere in the world.
+            {{data.summary}}
         </div>
-        <button mat-dialog-close mat-button (click)="onNoClick()" tabindex="2" style="position: absolute; right: 0; bottom: 12">Close</button>
     </div>
 </div>

@@ -1,9 +1,20 @@
 .content {
     overflow: hidden;
-    font-size: 30px;
+    font-family: 'Poppins', sans-serif;
+
+    p {
+        font-size: 15px;
+        color: #666666;
+    }
 
     h2 {
         margin-top: 20px;
+        font-size: 30px;
+        font-weight: 400;
+    }
+
+    h4 {
+        font-size: 20px;
     }
 
     ul {

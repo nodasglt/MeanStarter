@@ -6,12 +6,23 @@ import {
     UserProfile,
 } from '../profile-card';
 
+import { BannerService } from '../banner';
+
 @Component({
   selector: 'team',
   styleUrls: [ '../landing-page/landing-page.component.scss', 'team.component.scss' ],
   templateUrl: 'team.component.html'
 })
 export class TeamComponent {
+
+    constructor(
+        private bannerService: BannerService,
+    ) {
+        setTimeout(() => {
+            this.bannerService.setText('Eltrun Team');
+        });
+    }
+
     profile: UserProfile = {
         img: "https://i0.wp.com/circuits.io/assets/circuits-default-gravatar.png",
         name: "George Doukidis",

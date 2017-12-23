@@ -1,0 +1,37 @@
+<!--img src="http://educationwp.thimpress.com/demo-university-2/wp-content/uploads/sites/23/2016/04/hero_slider_5.jpg" alt=""-->
+<div (mouseenter)="ngOnDestroy()" (mouseleave)="ngAfterViewInit()">
+    <img [src]="images[current]" alt="">
+    <div class="next">
+        <button mat-mini-fab color="accent" (click)="next()">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
+    <div class="prev">
+        <button mat-mini-fab color="accent" (click)="prev()">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+    </div>
+    <div class="text" *ngIf="current !== 1">
+        <p>Athens Innovation Festival 20-22 Noε στο Ζάππειο </p>
+        <br>
+        <button mat-raised-button color="primary">More Info</button>
+    </div>
+</div>
+<br>
+<br>
+<div style="max-width: 1400px; margin: auto;">
+    <h2 style="font-size: 20px; padding-left: 15px; font-family: 'Poppins'; text-align: center; color: rgb(134, 18, 18);">Latest Eltrun News</h2>
+    <hr class="line">
+    <br>
+    <ngx-carousel
+        [inputs]="carouselTile"
+        (carouselLoad)="carouselTileLoad($event)">
+
+        <ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems">
+            <h1>{{Tile + 1}}</h1>
+        </ngx-tile>
+
+        <button NgxCarouselPrev mat-mini-fab color="accent" class='leftRs'>&lt;</button>
+        <button NgxCarouselNext mat-mini-fab color="accent" class='rightRs'>&gt;</button>
+    </ngx-carousel>
+</div>

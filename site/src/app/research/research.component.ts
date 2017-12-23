@@ -4,9 +4,12 @@ import {
 
 @Component({
   selector: 'research',
-  styleUrls: [ '../landing-page/landing-page.component.scss', 'research.component.scss' ],
-  templateUrl: 'research.component.html'
+  styleUrls: [ '../landing-page/landing-page.component.scss' ],
+  template: `
+    <section class="cd-section" style="max-width: 1400px;">
+        <router-outlet></router-outlet>
+    </section>
+    `,
 })
 export class ResearchComponent {
-    panelOpenState: boolean = false;
 }

@@ -36,7 +36,6 @@ export class ProfileComponent implements OnInit {
             const code = params['code'];
             if (code) {
                 this.authService.loginGoogle(code, false).subscribe(_ => {
-                    console.log(_);
                     this.token = this.authService.getToken();
                     this.test = this.authService.test();
                 })

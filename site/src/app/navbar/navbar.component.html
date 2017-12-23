@@ -1,60 +1,182 @@
-<div #Header *ngIf="window.innerWidth < 960" class="header">
-    <img src="assets/img/eltrun.jpg">
-</div>
-<mat-toolbar color="primary" style="z-index: 3;" [class.sticky]="!(window.innerWidth < 960) || isSticky">
-    <div fxLayout fxShow="false" fxShow.gt-sm style="position: absolute; top:10px; width: 100%;">
-        <img src="assets/img/eltrun.jpg" style="height: 100px; max-width: 100%">
+<div #Header class="test">
+    <div *ngIf="window.innerWidth < 960" class="header banner" routerLink="/">
+        <img src="assets/img/eltrun.jpg">
     </div>
-    <nav mat-tab-nav-bar fxLayout fxShow="false" fxShow.gt-sm style="margin-left: 340px;" color="accent">
-        <a mat-tab-link class="white"
-           routerLink="/" [routerLinkActiveOptions]= "{exact: true}"
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
-          About
-        </a>
-        <a mat-tab-link class="white"
-           routerLink="/projects"
-           routerLinkActive #rla2="routerLinkActive"
-           [active]="rla2.isActive">
-          Projects
-        </a>
-        <a mat-tab-link class="white"
-           routerLink="/publications"
-           routerLinkActive #rla3="routerLinkActive"
-           [active]="rla3.isActive">
-          Publications
-        </a>
-        <a mat-tab-link class="white"
-           routerLink="/team"
-           routerLinkActive #rla4="routerLinkActive"
-           [active]="rla4.isActive">
-          Team
-        </a>
-        <a mat-tab-link class="white"
-           routerLink="/phds"
-           routerLinkActive #rla5="routerLinkActive"
-           [active]="rla5.isActive">
-          PhDs
-        </a>
-        <a mat-tab-link class="white"
-           routerLink="/research"
-           routerLinkActive #rla6="routerLinkActive"
-           [active]="rla6.isActive">
-          Research
-        </a>
-    </nav>
-    <span class="fill-remaining-space"></span>
-    <button mat-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>
-     <mat-icon>menu</mat-icon>
-    </button>
-</mat-toolbar>
+    <div fxLayout fxShow="false" fxShow.gt-sm style="width: 100%; background-color: #F9AF36;">
+        <div fxLayout style="max-width: 1800px; min-width: 1240px; margin: auto;">
+            <span class="fill-remaining-space"></span>
+            <a href="/assets/brochure.pdf" target="_blank">Eltrun Brochure</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+</div>
+<div style="width: 100%; background-color: #030d18; z-index: 3;" [class.sticky]="isSticky" [class.not-sticky]="!isSticky">
+    <div style="max-width: 1800px; margin: auto;">
+        <mat-toolbar color="primary" style="margin: auto;">
+            <div fxLayout fxShow="false" fxShow.gt-sm class="banner" style="position: absolute; top: -3px; cursor: pointer;" routerLink="/">
+                <img src="assets/img/eltrun.png" style="width: 180px; height: 100%; margin-left: 30px;">
+            </div>
+            <nav mat-tab-nav-bar fxLayout fxShow="false" fxShow.gt-sm style="margin-left: 220px;" color="accent">
+                <a mat-tab-link class="white"
+                   routerLink="/about" [routerLinkActiveOptions]= "{exact: true}"
+                   routerLinkActive #rla="routerLinkActive"
+                   [active]="rla.isActive">
+                  About
+                </a>
+                <a mat-tab-link class="white"
+                   [matMenuTriggerFor]="resMenu"
+                   #resTrigger="matMenuTrigger"
+                   (mouseenter)="resTrigger.openMenu()"
+                   [active]="res1.isActive || res2.isActive || res3.isActive || res4.isActive || res5.isActive">
+                  Reasearch &darr;
+                </a>
+                <a mat-tab-link class="white"
+                   routerLink="/projects"
+                   routerLinkActive #rla2="routerLinkActive"
+                   [active]="rla2.isActive">
+                  Projects
+                </a>
+                <a mat-tab-link class="white"
+                   routerLink="/publications"
+                   routerLinkActive #rla3="routerLinkActive"
+                   [active]="rla3.isActive">
+                  Publications
+                </a>
+                <a mat-tab-link class="white"
+                   routerLink="/phds"
+                   routerLinkActive #rla4="routerLinkActive"
+                   [active]="rla4.isActive">
+                  PhDs
+                </a>
+                <a mat-tab-link class="white"
+                   routerLink="/team"
+                   routerLinkActive #rla5="routerLinkActive"
+                   [active]="rla5.isActive">
+                  Team
+                </a>
+                <a mat-tab-link class="white"
+                   [matMenuTriggerFor]="inovMenu"
+                   #inovTrigger="matMenuTrigger"
+                   (mouseenter)="inovTrigger.openMenu()"
+                   [active]="inov1.isActive || inov2.isActive || inov3.isActive || inov4.isActive || inov5.isActive || inov6.isActive">
+                  Innovation &darr;
+                </a>
+                <a mat-tab-link class="white"
+                   [matMenuTriggerFor]="ecomMenu"
+                   #ecomTrigger="matMenuTrigger"
+                   (mouseenter)="ecomTrigger.openMenu()"
+                   [active]="ecom1.isActive || ecom2.isActive || ecom3.isActive">
+                  E-Commerce &darr;
+                </a>
+            </nav>
+            <mat-menu #ecomMenu="matMenu" [overlapTrigger]="false">
+                <button mat-menu-item
+                    #ecom1="routerLinkActive"
+                    routerLink="/ecommerce/greka"
+                    routerLinkActive="active">
+                    GREKA Trustmark
+                </button>
+                <button mat-menu-item
+                    #ecom2="routerLinkActive"
+                    routerLink="/ecommerce/training"
+                    routerLinkActive="active">
+                    Training
+                </button>
+                <button mat-menu-item
+                    #ecom3="routerLinkActive"
+                    routerLink="/ecommerce/surveys"
+                    routerLinkActive="active">
+                    Surveys/Studies
+                </button>
+            </mat-menu>
+            <mat-menu #resMenu="matMenu" [overlapTrigger]="false">
+                <button mat-menu-item
+                    #res1="routerLinkActive"
+                    routerLink="/research/score"
+                    routerLinkActive="active">
+                    [SCORE] Supply & Demand Management. Collaboration and Electronic Services
+                </button>
+                <button mat-menu-item
+                    #res2="routerLinkActive"
+                    routerLink="/research/ebise"
+                    routerLinkActive="active">
+                    [EBISE] E-Business Innovation, Strategy and Entrepreneurship
+                </button>
+                <button mat-menu-item
+                    #res3="routerLinkActive"
+                    routerLink="/research/adopt"
+                    routerLinkActive="active">
+                    [ADOPT] Algorithms and Discrete Optimization
+                </button>
+                <button mat-menu-item
+                    #res4="routerLinkActive"
+                    routerLink="/research/imes"
+                    routerLinkActive="active">
+                    [IMES] Interactive Marketing and Electronic Services
+                </button>
+                <button mat-menu-item
+                    #res5="routerLinkActive"
+                    routerLink="/research/iml"
+                    routerLinkActive="active">
+                    [IML] Intelligent Media Lab
+                </button>
+            </mat-menu>
+            <mat-menu #inovMenu="matMenu" [overlapTrigger]="false">
+                <button mat-menu-item
+                    #inov1="routerLinkActive"
+                    routerLink="/innovation/idea"
+                    routerLinkActive="active">
+                    IDEA – Open Innovation
+                </button>
+                <button mat-menu-item
+                    #inov2="routerLinkActive"
+                    routerLink="/innovation/enovcomp"
+                    routerLinkActive="active">
+                    Ennovation Competition
+                </button>
+                <button mat-menu-item
+                    #inov3="routerLinkActive"
+                    routerLink="/innovation/euxcel"
+                    routerLinkActive="active">
+                    EU-XCEL Virtual Accelerator
+                </button>
+                <button mat-menu-item
+                    #inov4="routerLinkActive"
+                    routerLink="/innovation/tee"
+                    routerLinkActive="active">
+                    Prototype By TEE
+                </button>
+                <button mat-menu-item
+                    #inov5="routerLinkActive"
+                    routerLink="/innovation/yes"
+                    routerLinkActive="active">
+                    YES Summer School
+                </button>
+                <button mat-menu-item
+                    #inov6="routerLinkActive"
+                    routerLink="/innovation/other"
+                    routerLinkActive="active">
+                    Other Services
+                </button>
+            </mat-menu>
+            <span class="fill-remaining-space"></span>
+            <a mat-mini-fab color="primary" matTooltip="Brochure" target="_blank" href="/assets/brochure.pdf" fxHide="false" fxHide.gt-sm>
+                <mat-icon>book</mat-icon>
+            </a>
+            <button mat-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>
+             <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+    </div>
+</div>
 <mat-menu x-position="before" #menu="matMenu">
-    <button mat-menu-item routerLink="/"             routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">About</button>
-    <button mat-menu-item routerLink="/projects"     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Projects</button>
-    <button mat-menu-item routerLink="/publications" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Publications</button>
-    <button mat-menu-item routerLink="/team"         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Team</button>
-    <button mat-menu-item routerLink="/phds"         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">PhDs</button>
-    <button mat-menu-item routerLink="/research"     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Research</button>
+    <button mat-menu-item routerLink="/about"             routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">About</button>
+    <button mat-menu-item [matMenuTriggerFor]="resMenu"                       >Research</button>
+    <button mat-menu-item routerLink="/projects"     routerLinkActive="active">Projects</button>
+    <button mat-menu-item routerLink="/publications" routerLinkActive="active">Publications</button>
+    <button mat-menu-item routerLink="/phds"         routerLinkActive="active">PhDs</button>
+    <button mat-menu-item routerLink="/team"         routerLinkActive="active">Team</button>
+    <button mat-menu-item [matMenuTriggerFor]="inovMenu"                       >Innovation</button>
 </mat-menu>
-<div class="pad" style="height: 100px;" *ngIf="!(window.innerWidth < 960)"></div>
 <div class="pad" style="height: 64px;" *ngIf="(window.innerWidth < 960) && isSticky"></div>
+<banner *ngIf="router.url !== '/'"></banner>

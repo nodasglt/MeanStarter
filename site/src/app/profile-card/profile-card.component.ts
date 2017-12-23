@@ -1,13 +1,13 @@
 import {
-  Component,
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-  Inject,
-  Input,
-  ViewEncapsulation,
+    Component,
+    trigger,
+    state,
+    style,
+    transition,
+    animate,
+    Inject,
+    Input,
+    ViewEncapsulation,
 } from '@angular/core';
 
 import {
@@ -30,21 +30,21 @@ export interface UserProfile {
 }
 
 @Component({
-  selector: 'profile-card',
-  styleUrls: [ 'profile-card.component.scss' ],
-  templateUrl: 'profile-card.component.html',
-  animations: [
-    trigger('flipState', [
-      state('active', style({
-        transform: 'rotateY(179.9deg)'
-      })),
-      state('inactive', style({
-        transform: 'rotateY(0)'
-      })),
-      transition('active => inactive', animate('600ms ease-out')),
-      transition('inactive => active', animate('600ms ease-in'))
-    ])
-  ]
+    selector: 'profile-card',
+    styleUrls: ['profile-card.component.scss'],
+    templateUrl: 'profile-card.component.html',
+    animations: [
+        trigger('flipState', [
+            state('active', style({
+                transform: 'rotateY(179deg)'
+            })),
+            //state('inactive', style({
+            //    transform: 'rotateY(0)'
+            //})),
+            transition('active => *', animate('200ms ease-out')),
+            transition('* => active', animate('200ms ease-in'))
+        ])
+    ]
 })
 export class ProfileCardComponent {
 
@@ -52,34 +52,35 @@ export class ProfileCardComponent {
 
     flip: string = 'inactive';
 
-    toggleFlip() {
-      this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
+    toggleFlip(event$) {
+        event$.stopPropagation();
+        this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
     }
 
     constructor(
         public dialog: MatDialog
-    ) {}
+    ) { }
 
     openDialog(): void {
         let dialogRef = this.dialog.open(ProfileDialog, {
-          data: this.profile,
+            data: this.profile,
         });
     }
 }
 
 @Component({
-  selector: 'profile-dialog',
-  templateUrl: 'profile-dialog.component.html',
-  styles: [ '.mat-dialog-container { max-width: 1400px; }' ],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'profile-dialog',
+    templateUrl: 'profile-dialog.component.html',
+    styles: ['.mat-dialog-container { max-width: 1400px; }'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class ProfileDialog {
 
-  constructor(
-    public dialogRef: MatDialogRef<ProfileDialog>,
-    @Inject(MAT_DIALOG_DATA) public profile: UserProfile) { }
+    constructor(
+        public dialogRef: MatDialogRef<ProfileDialog>,
+        @Inject(MAT_DIALOG_DATA) public profile: UserProfile) { }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
 }

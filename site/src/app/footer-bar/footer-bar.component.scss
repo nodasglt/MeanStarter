@@ -32,7 +32,7 @@
 }
 
 .footer-distributed h3 span{
-	color:  #5383d3;
+	color: rgb(134, 18, 18);
 }
 
 /* Footer links */
@@ -50,11 +50,16 @@
 	color:  inherit;
 }
 
-.footer-distributed .footer-company-name{
+.footer-company-name{
 	color:  #8f9296;
+	background-color: rgb(0, 0, 0);
+	text-align: center;
 	font-size: 14px;
 	font-weight: normal;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	margin: 0;
+	width: 100%;
 }
 
 /* Footer Center */
@@ -96,7 +101,7 @@
 }
 
 .footer-distributed .footer-center p a{
-	color:  #5383d3;
+	color: rgb(134, 18, 18);
 	text-decoration: none;;
 }
 

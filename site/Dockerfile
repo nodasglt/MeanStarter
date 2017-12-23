@@ -41,5 +41,7 @@ RUN rm -Rf /tmp/npm_inst  &&\
     rm -Rf /root/.npm &&\
     apk del nodejs
 
+ADD nginx.conf /etc/nginx/
+
 # this is for virtual host purposes
 EXPOSE 80

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import {
     HttpClientModule,
@@ -24,6 +24,8 @@ import { StorageServiceModule } from 'angular-webstorage-service';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 
+import { NgxCarouselModule } from 'ngx-carousel';
+
 /*
 * Platform and Environment providers/directives/pipes
 */
@@ -48,6 +50,7 @@ import { MatButtonModule,
     MatListModule,
     MatExpansionModule,
     MatMenuModule,
+    MatTooltipModule,
 } from '@angular/material';
 
 import { ParticlesModule } from 'angular-particle';
@@ -57,10 +60,11 @@ import { NavBarComponent } from './navbar';
 import { LandingPageComponent } from './landing-page';
 import { TeamComponent } from './team';
 import { PublicationsComponent } from './publications';
-import { ProjectsComponent, ProjectDialog } from './projects';
+import { ProjectsComponent, ProjectDialog, ProjectsService } from './projects';
 import { FooterBarComponent } from './footer-bar';
 import { PhdsComponent, PhdsDialog } from './phds';
-import { ResearchComponent } from './research';
+import { SlideshowComponent } from './slideshow';
+import { BannerComponent, BannerService } from './banner';
 
 import {
     AuthService,
@@ -84,6 +88,9 @@ const APP_PROVIDERS = [
         useClass: AuthInterceptor,
         multi: true
     },
+    Title,
+    BannerService,
+    ProjectsService,
 ];
 
 type StoreType = {
@@ -113,7 +120,8 @@ type StoreType = {
         PhdsDialog,
         ProfileComponent,
         FooterBarComponent,
-        ResearchComponent,
+        SlideshowComponent,
+        BannerComponent,
         NoContentComponent,
         XLargeDirective,
     ],
@@ -144,9 +152,11 @@ type StoreType = {
         MatListModule,
         MatExpansionModule,
         MatMenuModule,
+        MatTooltipModule,
         ParticlesModule,
         FlexLayoutModule,
         StorageServiceModule,
+        NgxCarouselModule,
     ],
     /**
     * Expose our Services and Providers into Angular's dependency injection.

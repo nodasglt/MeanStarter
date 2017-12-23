@@ -1,1 +1,1 @@
-export * from './research.component';
+export { ResearchModule } from './research.module';

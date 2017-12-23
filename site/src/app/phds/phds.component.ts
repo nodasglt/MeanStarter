@@ -10,6 +10,8 @@ import {
     MAT_DIALOG_DATA,
 } from '@angular/material';
 
+import { BannerService } from '../banner';
+
 @Component({
     selector: 'phds',
     styleUrls: ['../landing-page/landing-page.component.scss', 'phds.component.scss'],
@@ -17,11 +19,15 @@ import {
 })
 export class PhdsComponent {
     constructor(
-        public dialog: MatDialog
-    ) {}
+        public dialog: MatDialog,
+        private bannerService: BannerService,
+    ) {
+        setTimeout(() => {
+            this.bannerService.setText('Eltrun PhDs');
+        });
+    }
 
     onClick(): void {
-        console.log(window.innerHeight);
         let dialogRef = this.dialog.open(PhdsDialog, {
             data: {  }
         });

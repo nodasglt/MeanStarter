@@ -1,9 +1,22 @@
 .ffs::-webkit-scrollbar {
-  display:none;
+    display:none;
 }
 
 .mat-dialog-container {
- max-width: 1400px;
- // width: 100vw;
- // height: 100vh;
+    max-width: 1400px;
+    position: relative;
+    // width: 100vw;
+    // height: 100vh;
+    .mat-icon.exit {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 600px) {
+
+        padding-top: 100px;
+
+    }
 }
